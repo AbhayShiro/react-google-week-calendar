@@ -16,31 +16,48 @@ class Calendar extends React.Component {
   }
   //<EventTag label="Call Tim, 5PM" />
   render() {
+    let { weekData, timeLabel } = this.props;
     return (
       <span>
-        <Row
-          style={{
-            marginTop: "34px"
-          }}>
-          <Col span={2} className="time-tick-column">
-            {timeLabel.map((time, o) => {
-              return <TimeLabel key={o} label={time} />;
+        {weekData ? (
+          <Row
+            style={{
+              marginTop: "34px"
+            }}>
+            <Col span={2} className="time-tick-column">
+              {timeLabel.map(({ id, label, position }, o) => {
+                return (
+                  <TimeLabel
+                    key={o}
+                    label={label}
+                    id={id}
+                    position={position}
+                  />
+                );
+              })}
+            </Col>
+            {Object.values(weekData).map(({ day, date, data }, i) => {
+              return (
+                <Col key={i} span={3} className="daytime-wrapper">
+                  <CalendarHeader day={day} date={date} />
+                  {Object.values(data).map((event, j) => {
+                    return <HourBox key={j} />;
+                  })}
+                </Col>
+              );
             })}
-          </Col>
-          {Object.values(weekData).map(({ day, date, data }, i) => {
-            return (
-              <Col key={i} span={3} className="daytime-wrapper">
-                <CalendarHeader day={day} date={date} />
-                {Object.values(data).map((event, j) => {
-                  return <HourBox />;
-                })}
-              </Col>
-            );
-          })}
-        </Row>
+          </Row>
+        ) : (
+          ""
+        )}
       </span>
     );
   }
 }
+
+Calendar.defaultProps = {
+  weekData,
+  timeLabel
+};
 
 export default Calendar;

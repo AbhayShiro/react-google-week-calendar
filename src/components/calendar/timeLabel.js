@@ -17,8 +17,8 @@ const Label = SC.div`
     font-size: 10px;
 `;
 
-const TimeLabel = ({ label }) => (
-  <TickLabelBox>
+const TimeLabel = ({ label, id, position }) => (
+  <TickLabelBox id={id}>
     <Label>{label}</Label>
   </TickLabelBox>
 );

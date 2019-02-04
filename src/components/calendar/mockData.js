@@ -212,28 +212,124 @@ export const weekData = {
 };
 
 export const timeLabel = [
-  "",
-  "1 AM",
-  "2 AM",
-  "3 AM",
-  "4 AM",
-  "5 AM",
-  "6 AM",
-  "7 AM",
-  "8 AM",
-  "9 AM",
-  "10 AM",
-  "11 AM",
-  "12 PM",
-  "1 PM",
-  "2 PM",
-  "3 PM",
-  "4 PM",
-  "5 PM",
-  "6 PM",
-  "7 PM",
-  "8 PM",
-  "9 PM",
-  "10 PM",
-  "11 PM"
+  {
+    label: "",
+    position: null,
+    id: "12-AM"
+  },
+  {
+    label: "1 AM",
+    position: null,
+    id: "1-AM"
+  },
+  {
+    label: "2 AM",
+    position: null,
+    id: "2_AM"
+  },
+  {
+    label: "3 AM",
+    position: null,
+    id: "3_AM"
+  },
+  {
+    label: "4 AM",
+    position: null,
+    id: "4_AM"
+  },
+  {
+    label: "5 AM",
+    position: null,
+    id: "5_AM"
+  },
+  {
+    label: "6 AM",
+    position: null,
+    id: "6_AM"
+  },
+  {
+    label: "7 AM",
+    position: null,
+    id: "7_AM"
+  },
+  {
+    label: "8 AM",
+    position: null,
+    id: "8_AM"
+  },
+  {
+    label: "9 AM",
+    position: null,
+    id: "9_AM"
+  },
+  {
+    label: "10 AM",
+    position: null,
+    id: "10_AM"
+  },
+  {
+    label: "11 AM",
+    position: null,
+    id: "11_AM"
+  },
+  {
+    label: "12 PM",
+    position: null,
+    id: "12_PM"
+  },
+  {
+    label: "1 PM",
+    position: null,
+    id: "1_PM"
+  },
+  {
+    label: "2 PM",
+    position: null,
+    id: "2_PM"
+  },
+  {
+    label: "3 PM",
+    position: null,
+    id: "3_PM"
+  },
+  {
+    label: "4 PM",
+    position: null,
+    id: "4_PM"
+  },
+  {
+    label: "5 PM",
+    position: null,
+    id: "5_PM"
+  },
+  {
+    label: "6 PM",
+    position: null,
+    id: "6_PM"
+  },
+  {
+    label: "7 PM",
+    position: null,
+    id: "7_PM"
+  },
+  {
+    label: "8 PM",
+    position: null,
+    id: "8_PM"
+  },
+  {
+    label: "9 PM",
+    position: null,
+    id: "9_PM"
+  },
+  {
+    label: "10 PM",
+    position: null,
+    id: "10_PM"
+  },
+  {
+    label: "11 PM",
+    position: null,
+    id: "11_PM"
+  }
 ];

@@ -72,7 +72,7 @@ CalendarHeader.defaultProps = {
 CalendarHeader.propTypes = {
   day: PropTypes.string,
   date: PropTypes.string,
-  active: PropTypes.boolean
+  active: PropTypes.bool
 };
 
 export default CalendarHeader;

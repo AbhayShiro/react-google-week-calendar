@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Layout, Menu, Icon } from "antd";
 
@@ -16,6 +17,7 @@ class MainLayout extends Component {
     this.state = {};
   }
   render() {
+    let { timeLabel, weekData } = this.props;
     return (
       <Layout className="core-layout">
         <Sider
@@ -25,8 +27,7 @@ class MainLayout extends Component {
           style={{
             background: "#fff",
             width: "270px"
-          }}
-        >
+          }}>
           <LogoContainer>Calendar</LogoContainer>
           <CreateButton
             onClick={() => {
@@ -38,10 +39,9 @@ class MainLayout extends Component {
         <Layout
           style={{
             background: "white"
-          }}
-        >
+          }}>
           <Content style={{ margin: "24px 16px 0" }}>
-            <Calendar />
+            <Calendar timeLabel={timeLabel} weekData={weekData} />
           </Content>
         </Layout>
       </Layout>
@@ -49,4 +49,9 @@ class MainLayout extends Component {
   }
 }
 
-export default MainLayout;
+export default connect(state => {
+  return {
+    timeLabel: state.calendarData.timeLabel,
+    weekData: state.calendarData.weekData
+  };
+})(MainLayout);
