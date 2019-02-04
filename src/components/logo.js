@@ -6,7 +6,7 @@ export default SC.div`
   height: 50px;
   background-repeat: no-repeat;
   background-size: auto;
-  text-align: -moz-center;
+  text-align: center;
   padding: 15px;
   font-size: 20px;
 `;

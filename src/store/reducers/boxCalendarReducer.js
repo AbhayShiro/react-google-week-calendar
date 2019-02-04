@@ -4,7 +4,7 @@ const initialState = {
   targetDate: null
 };
 
-export default function(state, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case TARGET_DATE_SELECTED:
       return Object.assign({}, state, {
