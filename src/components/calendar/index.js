@@ -57,8 +57,7 @@ class Calendar extends React.Component {
                     return (
                       <HourBox
                         key={j}
-                        openForm={e => {
-                          e.preventDefault();
+                        openForm={() => {
                           formModalOpen();
                         }}
                       />

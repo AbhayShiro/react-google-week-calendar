@@ -9,11 +9,11 @@ class EventAddForm extends Component {
     this.state = {};
   }
   render() {
-    let { isOpen, onClose } = this.props;
+    let { isOpen, onClose, modalStyleProps } = this.props;
     return (
       <Modal
         title={null}
-        style={{ top: 20 }}
+        style={modalStyleProps}
         visible={isOpen}
         onOk={onClose}
         onCancel={onClose}>
@@ -26,11 +26,13 @@ class EventAddForm extends Component {
 }
 
 EventAddForm.defaultProps = {
-  isOpen: false
+  isOpen: false,
+  modalStyleProps: { top: 20 }
 };
 
 EventAddForm.propTypes = {
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
+  modalStyleProps: PropTypes.object
 };
 
 export default EventAddForm;
