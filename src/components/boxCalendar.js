@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Calendar } from "antd";
 
 import { targetDateSelected } from "../store/actions/boxCalendarActions";
+import { findWeekRange } from "../store/actions/calendarDataAction";
 
 class BoxCalendar extends Component {
   constructor(props) {
@@ -12,8 +13,9 @@ class BoxCalendar extends Component {
   }
 
   onSelect = value => {
-    console.log(value);
-    this.props.targetDateSelected(value);
+    let formattedValue = value.format("YYYY-MM-DD");
+    this.props.targetDateSelected(formattedValue);
+    this.props.findWeekRange(formattedValue);
   };
 
   render() {
@@ -27,5 +29,5 @@ class BoxCalendar extends Component {
 
 export default connect(
   null,
-  { targetDateSelected }
+  { targetDateSelected, findWeekRange }
 )(BoxCalendar);

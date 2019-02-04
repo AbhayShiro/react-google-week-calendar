@@ -1,3 +1,8 @@
+import Moment from "moment";
+import { extendMoment } from "moment-range";
+
+const moment = extendMoment(Moment);
+
 /**
  * @description This method is used to return the size of an element and its position relative to the viewport.
  * @param id Any valid DOM element ID
@@ -18,4 +23,23 @@ export const getMaxEventBoxHeight = (fromTop, toTop) => {
 
 export const findBulkLabelOffset = timeLabel => {
   let timeLabelData = [];
+};
+
+export const getWeekDaysCollection = startDate => {
+  let startOfWeek = moment(startDate, "YYYY-MM-DD")
+    .startOf("isoWeek")
+    .isoWeekday(1);
+  let endOfWeek = moment(startDate, "YYYY-MM-DD").endOf("isoWeek");
+  let days = [];
+  let day = startOfWeek;
+  while (day <= endOfWeek) {
+    days.push({
+      date: day.format("DD"),
+      day: day.format("dddd").substr(0, 3),
+      data: [],
+      raw: day.toDate()
+    });
+    day = day.clone().add(1, "d");
+  }
+  return days;
 };
