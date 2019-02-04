@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col } from "antd";
 import PropTypes from "prop-types";
+import { Popover, Button } from "antd";
 
 class HourBox extends Component {
   constructor(props) {
@@ -8,9 +9,10 @@ class HourBox extends Component {
     this.state = {};
   }
   render() {
-    let { children } = this.props;
+    let { openForm, children } = this.props;
     return (
       <Row
+        onClick={openForm}
         className="hourbox-wrapper"
         style={{
           minHeight: "48px",
