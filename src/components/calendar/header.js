@@ -57,7 +57,7 @@ const DateLabel = SC.div`
 `;
 
 const CalendarHeader = ({ day, date, active }) => (
-  <ContentHeader>
+  <ContentHeader className="sticky-head">
     <DayLabel active={true}>{day}</DayLabel>
     <DateLabel active={true}>{date}</DateLabel>
   </ContentHeader>

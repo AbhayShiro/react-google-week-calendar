@@ -13,3 +13,12 @@ body {
   max-width: 270px !important;
   padding: 0 20px;
 }
+.daytime-wrapper:last-child {
+  border-right: 1px solid rgb(206, 206, 206);
+}
+.sticky-head {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+}

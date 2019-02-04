@@ -11,13 +11,13 @@ class HourBox extends Component {
     let { children } = this.props;
     return (
       <Row
+        className="hourbox-wrapper"
         style={{
           minHeight: "60px",
           border: "1px solid #cecece",
           borderBottom: "none",
           borderRight: "none"
-        }}
-      >
+        }}>
         {children}
       </Row>
     );
