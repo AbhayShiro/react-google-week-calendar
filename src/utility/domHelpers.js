@@ -1,6 +1,8 @@
 import Moment from "moment";
 import { extendMoment } from "moment-range";
 
+import { timeSlotData } from "../components/calendar/mockData";
+
 const moment = extendMoment(Moment);
 
 /**
@@ -26,20 +28,35 @@ export const findBulkLabelOffset = timeLabel => {
 };
 
 export const getWeekDaysCollection = startDate => {
-  let startOfWeek = moment(startDate, "YYYY-MM-DD")
+  let startOfWeek = moment(startDate, "DD-MM-YYY")
     .startOf("isoWeek")
-    .isoWeekday(1);
-  let endOfWeek = moment(startDate, "YYYY-MM-DD").endOf("isoWeek");
+    .isoWeekday(0);
+  let endOfWeek = moment(startDate, "DD-MM-YYY").endOf("week");
   let days = [];
+  let weekDataObject = {};
   let day = startOfWeek;
   while (day <= endOfWeek) {
-    days.push({
+    let data = {
       date: day.format("DD"),
       day: day.format("dddd").substr(0, 3),
-      data: [],
+      data: timeSlotData,
       raw: day.toDate()
+    };
+    days.push(data);
+    weekDataObject = Object.assign({}, weekDataObject, {
+      [day.format("DDMMYYYY")]: data
     });
     day = day.clone().add(1, "d");
   }
-  return days;
+  console.log(startDate, days, weekDataObject);
+  return {
+    weekData: weekDataObject,
+    days: days
+  };
+};
+
+export const getTodaysDate = () => {
+  let _today = Moment().format("DD-MM-YYYY");
+  console.debug(_today);
+  return _today;
 };

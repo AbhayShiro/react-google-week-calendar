@@ -1,7 +1,11 @@
 import { TARGET_DATE_SELECTED } from "../actions/boxCalendarActions";
 
+import { getTodaysDate } from "../../utility/domHelpers";
+
+const today = getTodaysDate();
+
 const initialState = {
-  targetDate: null
+  targetDate: today
 };
 
 export default function(state = initialState, action) {

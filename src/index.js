@@ -19,6 +19,7 @@ const Root = () => (
     </PersistGate>
   </Provider>
 );
-
 const rootElement = document.getElementById("root");
-ReactDOM.render(<Root store={store} />, rootElement);
+document.addEventListener("DOMContentLoaded", function(event) {
+  ReactDOM.render(<Root store={store} />, rootElement);
+});
