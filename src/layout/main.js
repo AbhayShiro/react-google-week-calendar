@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import { Layout, Menu, Icon } from "antd";
 
 //Custom component imports
-import BoxCalendar from "./components/boxCalendar";
+import BoxCalendar from "../components/boxCalendar";
+import LogoContainer from "../components/logo";
 
 const { Content, Sider } = Layout;
 
-class App extends Component {
+class MainLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -18,9 +19,12 @@ class App extends Component {
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
-          style={{ background: "#fff" }}
+          style={{
+            background: "#fff",
+            width: "280px !important"
+          }}
         >
-          <div className="logo" />
+          <LogoContainer>Calendar</LogoContainer>
           <BoxCalendar />
         </Sider>
         <Layout>
@@ -35,4 +39,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default MainLayout;
