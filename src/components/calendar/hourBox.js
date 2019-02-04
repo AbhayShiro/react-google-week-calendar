@@ -13,7 +13,9 @@ class HourBox extends Component {
       <Row
         style={{
           minHeight: "60px",
-          border: "1px solid #cecece"
+          border: "1px solid #cecece",
+          borderBottom: "none",
+          borderRight: "none"
         }}
       >
         {children}

@@ -6,6 +6,8 @@ import CalendarHeader from "./header";
 import HourBox from "./hourBox";
 import EventTag from "../eventTag";
 
+import MockData from "./mockData";
+
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
@@ -20,30 +22,21 @@ class Calendar extends React.Component {
             marginTop: "34px"
           }}
         >
-          <Col span={3}>
-            <CalendarHeader />
-            <HourBox>
-              <EventTag label="Call Tim, 5PM" />
-            </HourBox>
-          </Col>
-          <Col span={3}>
-            <CalendarHeader />
-          </Col>
-          <Col span={3}>
-            <CalendarHeader />
-          </Col>
-          <Col span={3}>
-            <CalendarHeader />
-          </Col>
-          <Col span={3}>
-            <CalendarHeader />
-          </Col>
-          <Col span={3}>
-            <CalendarHeader />
-          </Col>
-          <Col span={3}>
-            <CalendarHeader />
-          </Col>
+          {Object.values(MockData).map(({ day, date, data }, i) => {
+            console.log({ day, date, data }, i);
+            return (
+              <Col span={3}>
+                <CalendarHeader day={day} date={date} />
+                {Object.values(data).map((event, j) => {
+                  return (
+                    <HourBox>
+                      <EventTag label="Call Tim, 5PM" />
+                    </HourBox>
+                  );
+                })}
+              </Col>
+            );
+          })}
         </Row>
       </span>
     );

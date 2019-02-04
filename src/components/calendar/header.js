@@ -7,9 +7,10 @@ const ContentHeader = SC.div`
     display: flex;
     flex-direction: column;
     justify-self: center;
+    margin-bottom: 25px;
 `;
 const DayLabel = SC.div`
-  color: #70757a;
+color: ${props => (props.active ? "#70757a" : "#3c4043")};
   font-size: 11px;
   font-weight: 500;
   letter-spacing: .8px;
@@ -26,7 +27,7 @@ const DateLabel = SC.div`
     font-variant: tabular-nums;
     font-feature-settings: "tnum" 1;
     border-radius: 100%;
-    color: #3c4043;
+    color: ${props => (props.active ? "#fff" : "#3c4043")};
     font-family: 'Google Sans',Roboto,Arial,sans-serif;
     line-height: 46px;
     height: 46px;
@@ -49,27 +50,29 @@ const DateLabel = SC.div`
     line-height: 46px;
     height: 46px;
     width: 46px;
-
+    background-color: ${props => (props.active ? "#1a73e8" : "inherit")};
     &:hover{
-      background-color: #f1f3f4;
+      background-color: ${props => (props.active ? "#1a73e8" : "#f1f3f4")};
     }
 `;
 
-const CalendarHeader = ({ day, date }) => (
+const CalendarHeader = ({ day, date, active }) => (
   <ContentHeader>
-    <DayLabel>{day}</DayLabel>
-    <DateLabel>{date}</DateLabel>
+    <DayLabel active={true}>{day}</DayLabel>
+    <DateLabel active={true}>{date}</DateLabel>
   </ContentHeader>
 );
 
 CalendarHeader.defaultProps = {
   day: "Sun",
-  date: "13"
+  date: "13",
+  active: false
 };
 
 CalendarHeader.propTypes = {
   day: PropTypes.string,
-  date: PropTypes.string
+  date: PropTypes.string,
+  active: PropTypes.boolean
 };
 
 export default CalendarHeader;
