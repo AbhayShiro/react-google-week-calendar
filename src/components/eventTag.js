@@ -6,18 +6,17 @@ const EventTag = ({ color, label }) => (
   <Tag
     color={color}
     style={{
-      backgroundColor: "#3F51B5",
-      borderColor: "#3F51B5",
+      backgroundColor: "#039BE5",
+      borderColor: "#039BE5",
       width: "90%"
-    }}
-  >
+    }}>
     {label}
   </Tag>
 );
 
 EventTag.defaultProps = {
   color: "#108ee9",
-  label: ""
+  label: null
 };
 
 EventTag.propTypes = {

@@ -11,7 +11,10 @@ import TimeLabel from "./timeLabel";
 
 import {
   formModalClose,
-  formModalOpen
+  formModalOpen,
+  addEventData,
+  deleteEventData,
+  editEventData
 } from "../../store/actions/eventFormAction";
 
 import { weekData, timeLabel } from "./mockData";
@@ -28,7 +31,11 @@ class Calendar extends React.Component {
       timeLabel,
       isModalOpen,
       formModalClose,
-      formModalOpen
+      formModalOpen,
+      activeTile,
+      addEventData,
+      editEventData,
+      deleteEventData
     } = this.props;
     return (
       <span>
@@ -43,13 +50,13 @@ class Calendar extends React.Component {
                   <TimeLabel
                     key={o}
                     label={label}
-                    id={id}
+                    id={id + "_hours"}
                     position={position}
                   />
                 );
               })}
             </Col>
-            {Object.values(weekData).map(({ day, date, data }, i) => {
+            {Object.values(weekData).map(({ day, date, data, raw }, i) => {
               return (
                 <Col key={i} span={3} className="daytime-wrapper">
                   <CalendarHeader day={day} date={date} />
@@ -57,10 +64,21 @@ class Calendar extends React.Component {
                     return (
                       <HourBox
                         key={j}
+                        hour={j}
+                        rawKey={raw}
+                        event={event}
                         openForm={() => {
-                          formModalOpen();
-                        }}
-                      />
+                          formModalOpen({
+                            from: j,
+                            date: raw
+                          });
+                        }}>
+                        {event.length > 0
+                          ? event.map((e, k) => {
+                              return <EventTag label={e.title} />;
+                            })
+                          : ""}
+                      </HourBox>
                     );
                   })}
                 </Col>
@@ -72,10 +90,13 @@ class Calendar extends React.Component {
         )}
         <EventAddForm
           isOpen={isModalOpen}
-          onClose={e => {
-            e.preventDefault();
+          onClose={() => {
             formModalClose();
           }}
+          saveEvent={data => {
+            addEventData(data);
+          }}
+          {...activeTile}
         />
       </span>
     );
@@ -90,8 +111,15 @@ Calendar.defaultProps = {
 export default connect(
   state => {
     return {
-      isModalOpen: state.eventForm.isModalOpen
+      isModalOpen: state.eventForm.isModalOpen,
+      activeTile: state.eventForm.activeTile
     };
   },
-  { formModalClose, formModalOpen }
+  {
+    formModalClose,
+    formModalOpen,
+    addEventData,
+    editEventData,
+    deleteEventData
+  }
 )(Calendar);

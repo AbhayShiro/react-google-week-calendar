@@ -19,7 +19,7 @@ class HourBox extends Component {
   };
 
   render() {
-    let { openForm, children } = this.props;
+    let { openForm, event, children, hour, raw } = this.props;
     return (
       <Row
         ref={e => (this.element = e)}

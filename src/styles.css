@@ -25,3 +25,22 @@ body {
 .time-tick-column:first-child {
   margin-top: 86px;
 }
+.event-form-tag-item {
+  width: 50px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+}
+.event-form-input,
+.event-form-input:hover {
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 22px;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  border-radius: 0;
+}
+.event-form-input:focus {
+  border: none !important;
+  border-radius: 0;
+  border-bottom: 1px solid #1a73e8 !important;
+}

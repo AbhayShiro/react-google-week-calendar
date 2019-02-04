@@ -40,7 +40,7 @@ export const getWeekDaysCollection = startDate => {
       date: day.format("DD"),
       day: day.format("dddd").substr(0, 3),
       data: timeSlotData,
-      raw: day.toDate()
+      raw: day.format("DDMMYYYY")
     };
     days.push(data);
     weekDataObject = Object.assign({}, weekDataObject, {

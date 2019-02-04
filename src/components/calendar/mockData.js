@@ -67,121 +67,121 @@ export const timeLabel = [
   {
     label: "",
     position: null,
-    id: "12-AM"
+    id: "0"
   },
   {
     label: "1 AM",
     position: null,
-    id: "1-AM"
+    id: "1"
   },
   {
     label: "2 AM",
     position: null,
-    id: "2_AM"
+    id: "2"
   },
   {
     label: "3 AM",
     position: null,
-    id: "3_AM"
+    id: "3"
   },
   {
     label: "4 AM",
     position: null,
-    id: "4_AM"
+    id: "4"
   },
   {
     label: "5 AM",
     position: null,
-    id: "5_AM"
+    id: "5"
   },
   {
     label: "6 AM",
     position: null,
-    id: "6_AM"
+    id: "6"
   },
   {
     label: "7 AM",
     position: null,
-    id: "7_AM"
+    id: "7"
   },
   {
     label: "8 AM",
     position: null,
-    id: "8_AM"
+    id: "8"
   },
   {
     label: "9 AM",
     position: null,
-    id: "9_AM"
+    id: "9"
   },
   {
     label: "10 AM",
     position: null,
-    id: "10_AM"
+    id: "10"
   },
   {
     label: "11 AM",
     position: null,
-    id: "11_AM"
+    id: "11"
   },
   {
     label: "12 PM",
     position: null,
-    id: "12_PM"
+    id: "12"
   },
   {
     label: "1 PM",
     position: null,
-    id: "1_PM"
+    id: "13"
   },
   {
     label: "2 PM",
     position: null,
-    id: "2_PM"
+    id: "14"
   },
   {
     label: "3 PM",
     position: null,
-    id: "3_PM"
+    id: "15"
   },
   {
     label: "4 PM",
     position: null,
-    id: "4_PM"
+    id: "16"
   },
   {
     label: "5 PM",
     position: null,
-    id: "5_PM"
+    id: "17"
   },
   {
     label: "6 PM",
     position: null,
-    id: "6_PM"
+    id: "18"
   },
   {
     label: "7 PM",
     position: null,
-    id: "7_PM"
+    id: "19"
   },
   {
     label: "8 PM",
     position: null,
-    id: "8_PM"
+    id: "20"
   },
   {
     label: "9 PM",
     position: null,
-    id: "9_PM"
+    id: "21"
   },
   {
     label: "10 PM",
     position: null,
-    id: "10_PM"
+    id: "22"
   },
   {
     label: "11 PM",
     position: null,
-    id: "11_PM"
+    id: "23"
   }
 ];

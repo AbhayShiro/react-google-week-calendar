@@ -18,6 +18,32 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case "ADD_EVENT_DATA": {
+      let { date, from, to, fromOffset, toOffset, title } = action.payload,
+        _week = state.weekData[date],
+        _weekData = Object.assign({}, state.weekData, {
+          [date]: Object.assign({}, _week, {
+            data: Object.assign({}, _week.data, {
+              [from.hours]: [
+                ..._week.data[from.hours],
+                {
+                  title,
+                  fromOffset,
+                  toOffset,
+                  from,
+                  to
+                }
+              ]
+            })
+          })
+        });
+      console.log("hit the road jack", date, _week);
+
+      return Object.assign({}, state, {
+        weekData: _weekData,
+        master: Object.assign({}, state.master, _weekData)
+      });
+    }
     case FIND_WEEK_RANGE:
       return Object.assign({}, state, {
         days: action.payload.days,
