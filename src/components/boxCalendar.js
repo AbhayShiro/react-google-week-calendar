@@ -13,7 +13,7 @@ class BoxCalendar extends Component {
   }
 
   onSelect = value => {
-    let formattedValue = value.format("YYYY-MM-DD");
+    let formattedValue = value.format("DD-MM-YYYY");
     this.props.targetDateSelected(formattedValue);
     this.props.findWeekRange(formattedValue);
   };

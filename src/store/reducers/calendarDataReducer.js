@@ -21,7 +21,8 @@ export default function(state = initialState, action) {
     case FIND_WEEK_RANGE:
       return Object.assign({}, state, {
         days: action.payload.days,
-        weekData: action.payload.weekData
+        weekData: action.payload.weekData,
+        master: Object.assign({}, state.master, action.payload.weekData)
       });
     default:
       return state;

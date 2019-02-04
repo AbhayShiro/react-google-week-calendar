@@ -21,5 +21,6 @@ const Root = () => (
 );
 const rootElement = document.getElementById("root");
 document.addEventListener("DOMContentLoaded", function(event) {
-  ReactDOM.render(<Root store={store} />, rootElement);
+  console.log("Loaded");
 });
+ReactDOM.render(<Root store={store} />, rootElement);
