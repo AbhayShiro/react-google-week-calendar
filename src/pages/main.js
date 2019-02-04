@@ -6,6 +6,7 @@ import { Layout, Menu, Icon } from "antd";
 import BoxCalendar from "../components/boxCalendar";
 import LogoContainer from "../components/logo";
 import CreateButton from "../components/createButton";
+import Calendar from "../components/calendar";
 
 const { Content, Sider } = Layout;
 
@@ -34,11 +35,13 @@ class MainLayout extends Component {
           />
           <BoxCalendar />
         </Sider>
-        <Layout>
+        <Layout
+          style={{
+            background: "white"
+          }}
+        >
           <Content style={{ margin: "24px 16px 0" }}>
-            <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
-              content
-            </div>
+            <Calendar />
           </Content>
         </Layout>
       </Layout>
