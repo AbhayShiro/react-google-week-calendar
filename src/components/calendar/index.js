@@ -75,7 +75,20 @@ class Calendar extends React.Component {
                         }}>
                         {event.length > 0
                           ? event.map((e, k) => {
-                              return <EventTag label={e.title} />;
+                              return (
+                                <EventTag
+                                  label={e.title}
+                                  key={k}
+                                  styleObj={{
+                                    width: Math.abs(90 / event.length) + "%",
+                                    zIndex: 4 + k,
+                                    left: k * 20 + "%",
+                                    height: Math.abs(
+                                      e.toOffset.top - e.fromOffset.top
+                                    )
+                                  }}
+                                />
+                              );
                             })
                           : ""}
                       </HourBox>
