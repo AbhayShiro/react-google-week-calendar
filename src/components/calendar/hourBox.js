@@ -13,7 +13,7 @@ class HourBox extends Component {
       <Row
         className="hourbox-wrapper"
         style={{
-          minHeight: "60px",
+          minHeight: "48px",
           border: "1px solid #cecece",
           borderBottom: "none",
           borderRight: "none"

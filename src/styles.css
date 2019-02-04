@@ -22,3 +22,6 @@ body {
   z-index: 100;
   background: white;
 }
+.time-tick-column:first-child {
+  margin-top: 86px;
+}

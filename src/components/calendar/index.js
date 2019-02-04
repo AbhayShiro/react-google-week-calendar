@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 import CalendarHeader from "./header";
 import HourBox from "./hourBox";
 import EventTag from "../eventTag";
+import TimeLabel from "./timeLabel";
 
-import MockData from "./mockData";
+import { weekData, timeLabel } from "./mockData";
 
 class Calendar extends React.Component {
   constructor(props) {
@@ -21,10 +22,14 @@ class Calendar extends React.Component {
           style={{
             marginTop: "34px"
           }}>
-          {Object.values(MockData).map(({ day, date, data }, i) => {
-            console.log({ day, date, data }, i);
+          <Col span={2} className="time-tick-column">
+            {timeLabel.map((time, o) => {
+              return <TimeLabel key={o} label={time} />;
+            })}
+          </Col>
+          {Object.values(weekData).map(({ day, date, data }, i) => {
             return (
-              <Col span={3} className="daytime-wrapper">
+              <Col key={i} span={3} className="daytime-wrapper">
                 <CalendarHeader day={day} date={date} />
                 {Object.values(data).map((event, j) => {
                   return <HourBox />;
