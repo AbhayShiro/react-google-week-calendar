@@ -1,6 +1,15 @@
-body{
-  font-family: 'Open Sans', sans-serif;
+body {
+  font-family: "Open Sans", sans-serif;
+}
+.core-layout {
+  height: 100vh;
 }
 .ant-fullcalendar-header .ant-radio-group {
-   display: none;
+  display: none;
+}
+.calendar-sider {
+  width: 270px;
+  min-width: 270px !important;
+  max-width: 270px !important;
+  padding: 0 20px;
 }

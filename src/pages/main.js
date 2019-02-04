@@ -5,6 +5,7 @@ import { Layout, Menu, Icon } from "antd";
 //Custom component imports
 import BoxCalendar from "../components/boxCalendar";
 import LogoContainer from "../components/logo";
+import CreateButton from "../components/createButton";
 
 const { Content, Sider } = Layout;
 
@@ -15,16 +16,22 @@ class MainLayout extends Component {
   }
   render() {
     return (
-      <Layout>
+      <Layout className="core-layout">
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
+          className="calendar-sider"
           style={{
             background: "#fff",
-            width: "280px !important"
+            width: "270px"
           }}
         >
           <LogoContainer>Calendar</LogoContainer>
+          <CreateButton
+            onClick={() => {
+              console.debug("on click calendar ebvetn added");
+            }}
+          />
           <BoxCalendar />
         </Sider>
         <Layout>
