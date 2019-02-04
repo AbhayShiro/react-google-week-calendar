@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tag } from "antd";
 
-const EventTag = ({ color, label, styleObj }) => (
+const EventTag = ({ color, label, styleObj, onClick }) => (
   <Tag
     color={color}
+    onClick
     style={Object.assign(
       {},
       {

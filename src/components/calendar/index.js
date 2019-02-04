@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import EventAddForm from "./eventAddForm";
 import CalendarHeader from "./header";
 import HourBox from "./hourBox";
-import EventTag from "../eventTag";
 import TimeLabel from "./timeLabel";
 
 import {
@@ -24,6 +23,50 @@ class Calendar extends React.Component {
     super(props);
     this.state = {};
   }
+
+  generateEventBlocks = weekData => {
+    return Object.values(weekData).map(({ day, date, data, raw }, i) => {
+      return (
+        <Col key={i} span={3} className="daytime-wrapper">
+          <CalendarHeader day={day} date={date} />
+          {this.generateHourBox(data, raw)}
+        </Col>
+      );
+    });
+  };
+
+  generateHourBox = (data, dataKey) => {
+    return Object.values(data).map((event, j) => {
+      return (
+        <HourBox
+          key={j}
+          hour={j}
+          rawKey={dataKey}
+          event={event}
+          openForm={() => {
+            formModalOpen({
+              from: j,
+              date: dataKey
+            });
+          }}
+        />
+      );
+    });
+  };
+
+  generateTimeLabelBox = timeLabel => {
+    return timeLabel.map(({ id, label, position }, o) => {
+      return (
+        <TimeLabel
+          key={o}
+          label={label}
+          id={id + "_hours"}
+          position={position}
+        />
+      );
+    });
+  };
+
   //<EventTag label="Call Tim, 5PM" />
   render() {
     let {
@@ -45,58 +88,9 @@ class Calendar extends React.Component {
               marginTop: "34px"
             }}>
             <Col span={2} className="time-tick-column">
-              {timeLabel.map(({ id, label, position }, o) => {
-                return (
-                  <TimeLabel
-                    key={o}
-                    label={label}
-                    id={id + "_hours"}
-                    position={position}
-                  />
-                );
-              })}
+              {this.generateTimeLabelBox(timeLabel)}
             </Col>
-            {Object.values(weekData).map(({ day, date, data, raw }, i) => {
-              return (
-                <Col key={i} span={3} className="daytime-wrapper">
-                  <CalendarHeader day={day} date={date} />
-                  {Object.values(data).map((event, j) => {
-                    return (
-                      <HourBox
-                        key={j}
-                        hour={j}
-                        rawKey={raw}
-                        event={event}
-                        openForm={() => {
-                          formModalOpen({
-                            from: j,
-                            date: raw
-                          });
-                        }}>
-                        {event.length > 0
-                          ? event.map((e, k) => {
-                              return (
-                                <EventTag
-                                  label={e.title}
-                                  key={k}
-                                  styleObj={{
-                                    width: Math.abs(90 / event.length) + "%",
-                                    zIndex: 4 + k,
-                                    left: k * 20 + "%",
-                                    height: Math.abs(
-                                      e.toOffset.top - e.fromOffset.top
-                                    )
-                                  }}
-                                />
-                              );
-                            })
-                          : ""}
-                      </HourBox>
-                    );
-                  })}
-                </Col>
-              );
-            })}
+            {this.generateEventBlocks(weekData)}
           </Row>
         ) : (
           ""
