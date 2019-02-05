@@ -26,7 +26,10 @@ const openNotification = ({ title, description, editEvent, deleteEvent }) => {
         className="event-notif-control-button"
         size="small"
         icon="delete"
-        onClick={deleteEvent}
+        onClick={() => {
+          deleteEvent();
+          notification.close(key);
+        }}
       />
       <Button
         className="event-notif-control-button"

@@ -1,6 +1,6 @@
 import { timeLabel, weekData } from "../../components/calendar/mockData.js";
 import { FIND_WEEK_RANGE } from "../actions/calendarDataAction";
-
+import { ADD_EVENT_DATA, DELETE_EVENT_DATA } from "../actions/eventFormAction";
 import { getWeekDaysCollection, uniqBy } from "../../utility/domHelpers";
 import { getTodaysDate } from "../../utility/domHelpers";
 
@@ -18,7 +18,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case "ADD_EVENT_DATA": {
+    case ADD_EVENT_DATA: {
       let { date, from, to, fromOffset, toOffset, title, id } = action.payload,
         _week = state.weekData[date],
         _eventData = [
@@ -37,6 +37,22 @@ export default function(state = initialState, action) {
         [date]: Object.assign({}, _week, {
           data: Object.assign({}, _week.data, {
             [from.hours]: _eventData
+          })
+        })
+      });
+      return Object.assign({}, state, {
+        weekData: _weekData,
+        master: Object.assign({}, state.master, _weekData)
+      });
+    }
+    case DELETE_EVENT_DATA: {
+      let { date, from, to, fromOffset, toOffset, title, id } = action.payload,
+        _week = state.weekData[date];
+
+      let _weekData = Object.assign({}, state.weekData, {
+        [date]: Object.assign({}, _week, {
+          data: Object.assign({}, _week.data, {
+            [from.hours]: [..._week.data[from.hours].filter(c => c.id !== id)]
           })
         })
       });

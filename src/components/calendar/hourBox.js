@@ -6,7 +6,7 @@ import { Popover, Button } from "antd";
 import SC from "styled-components";
 
 import EventTag from "../eventTag";
-import notifier from "../Notifier";
+import notifier from "../notifier";
 
 import { dayNameFromString } from "../../utility/dateHelpers";
 
