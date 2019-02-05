@@ -43,6 +43,10 @@ body {
   border: none !important;
   border-radius: 0;
   border-bottom: 1px solid #1a73e8 !important;
+  box-shadow: none !important;
 }
 .event-notif-control-button {
+}
+.ant-select-selection{
+  border: none !important;
 }

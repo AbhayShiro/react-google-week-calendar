@@ -48,7 +48,6 @@ export const getWeekDaysCollection = startDate => {
     });
     day = day.clone().add(1, "d");
   }
-  console.log(startDate, days, weekDataObject);
   return {
     weekData: weekDataObject,
     days: days
@@ -57,7 +56,6 @@ export const getWeekDaysCollection = startDate => {
 
 export const getTodaysDate = () => {
   let _today = Moment().format("DD-MM-YYYY");
-  console.debug(_today);
   return _today;
 };
 

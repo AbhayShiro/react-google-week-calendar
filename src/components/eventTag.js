@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Tag } from "antd";
 
@@ -14,7 +14,8 @@ const EventTag = ({ color, label, styleObj, onClick }) => (
         position: "absolute"
       },
       styleObj
-    )}>
+    )}
+  >
     {label}
   </Tag>
 );

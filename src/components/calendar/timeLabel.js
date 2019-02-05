@@ -6,7 +6,7 @@ const TickLabelBox = SC.div`
     padding-right: 8px;
     text-align: right;
     position: relative;
-    height: 55px;
+    height: 54px;
 `;
 const Label = SC.div`
     display: block;
@@ -28,7 +28,9 @@ TimeLabel.defaultProps = {
 };
 
 TimeLabel.propTypes = {
-  label: PropTypes.string
+  label: PropTypes.string,
+  id: PropTypes.string,
+  position: PropTypes.object
 };
 
 export default TimeLabel;

@@ -1,3 +1,7 @@
+/**
+ * Please do not delete this file. This data is used for mock and as init data.
+ */
+
 export const timeSlotData = {
   0: [],
   1: [],

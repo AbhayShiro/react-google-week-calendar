@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Layout, Menu, Icon } from "antd";
+import { Layout } from "antd";
 
 //Custom component imports
 import BoxCalendar from "../components/boxCalendar";
@@ -21,13 +21,15 @@ class MainLayout extends Component {
     return (
       <Layout className="core-layout">
         <Sider
+          collapsible={false}
           breakpoint="lg"
           collapsedWidth="0"
           className="calendar-sider"
           style={{
             background: "#fff",
             width: "270px"
-          }}>
+          }}
+        >
           <LogoContainer>Calendar</LogoContainer>
           <CreateButton
             onClick={() => {
@@ -39,7 +41,8 @@ class MainLayout extends Component {
         <Layout
           style={{
             background: "white"
-          }}>
+          }}
+        >
           <Content style={{ margin: "24px 16px 0" }}>
             <Calendar timeLabel={timeLabel} weekData={weekData} />
           </Content>

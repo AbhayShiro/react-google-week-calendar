@@ -5,7 +5,9 @@ const SVG = SC.svg`
   padding-left: 4px;
   margin-right: 10px;
 `;
-
+/**
+ * @description This SVG is taken from Google Calendar site. The author in no way claims ownership over any Google logo.
+ */
 export default () => (
   <SVG width="36" height="36" viewBox="0 0 36 36">
     <path fill="#34A853" d="M16 16v14h4V20z" />

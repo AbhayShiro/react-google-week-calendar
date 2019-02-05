@@ -102,7 +102,8 @@ class EventAddForm extends Component {
         <Form>
           <Item>
             {getFieldDecorator("title", {
-              initialValue: id ? title : ""
+              initialValue: id ? title : "",
+              rules: [{ required: true, message: "Please add a title!" }]
             })(<Input placeholder="Add title" className="event-form-input" />)}
           </Item>
           <Item>

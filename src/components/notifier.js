@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, notification, Icon } from "antd";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import SC from "styled-components";
 
@@ -49,6 +48,13 @@ const openNotification = ({ title, description, editEvent, deleteEvent }) => {
       console.debug("Closed");
     }
   });
+};
+
+openNotification.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  editEvent: PropTypes.func,
+  deleteEvent: PropTypes.func
 };
 
 export default openNotification;

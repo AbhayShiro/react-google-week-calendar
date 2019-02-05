@@ -27,6 +27,11 @@ class BoxCalendar extends Component {
   }
 }
 
+BoxCalendar.propTypes = {
+  targetDateSelected: PropTypes.func,
+  findWeekRange: PropTypes.func
+};
+
 export default connect(
   null,
   { targetDateSelected, findWeekRange }

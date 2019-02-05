@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { Row, Col } from "antd";
+import { Row } from "antd";
 import PropTypes from "prop-types";
-import { Popover, Button } from "antd";
 import SC from "styled-components";
 
 import EventTag from "../eventTag";
@@ -96,6 +95,10 @@ class HourBox extends Component {
 
 HourBox.defaultProps = {
   id: ""
+};
+
+HourBox.propTypes = {
+  id: PropTypes.string
 };
 
 export default HourBox;

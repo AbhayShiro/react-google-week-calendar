@@ -1,13 +1,15 @@
 import React from "react";
-import { Row, Col, Layout } from "antd";
+import { Row, Col } from "antd";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+//Custom imports
 import EventAddForm from "./eventAddForm";
 import CalendarHeader from "./header";
 import HourBox from "./hourBox";
 import TimeLabel from "./timeLabel";
 
+//event form management actions
 import {
   formModalClose,
   formModalOpen,
@@ -17,8 +19,12 @@ import {
   refreshEventForm
 } from "../../store/actions/eventFormAction";
 
+//Mock data import
 import { weekData, timeLabel } from "./mockData";
 
+/**
+ * @description Calendar component is responsible to render calender as a whole, which includes the header and date-wise collection of events.
+ */
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
@@ -85,11 +91,8 @@ class Calendar extends React.Component {
       timeLabel,
       isModalOpen,
       formModalClose,
-      formModalOpen,
       activeTile,
       addEventData,
-      editEventData,
-      deleteEventData,
       refreshEventForm
     } = this.props;
     return (
@@ -127,6 +130,13 @@ class Calendar extends React.Component {
 Calendar.defaultProps = {
   weekData,
   timeLabel
+};
+
+Calendar.propTypes = {
+  weekData: PropTypes.object,
+  timeLabel: PropTypes.array,
+  isModalOpen: PropTypes.bool,
+  activeTile: PropTypes.object
 };
 
 export default connect(
