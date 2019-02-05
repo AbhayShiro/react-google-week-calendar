@@ -4,7 +4,8 @@ import {
   FORM_MODAL_CLOSE,
   ADD_EVENT_DATA,
   DELETE_EVENT_DATA,
-  EDIT_EVENT_DATA
+  EDIT_EVENT_DATA,
+  REFRESH_EVENT_FORM
 } from "../actions/eventFormAction";
 
 const initialState = {
@@ -18,6 +19,11 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case REFRESH_EVENT_FORM:
+      return Object.assign({}, state, {
+        currentData: null,
+        activeTile: null
+      });
     case EDIT_EVENT_DATA:
       return Object.assign({}, state, {
         currentData: Object.assign({}, state.currentData, action.payload)

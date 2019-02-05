@@ -13,7 +13,8 @@ import {
   formModalOpen,
   addEventData,
   deleteEventData,
-  editEventData
+  editEventData,
+  refreshEventForm
 } from "../../store/actions/eventFormAction";
 
 import { weekData, timeLabel } from "./mockData";
@@ -37,15 +38,18 @@ class Calendar extends React.Component {
 
   generateHourBox = (data, dataKey) => {
     return Object.values(data).map((event, j) => {
+      let _event = event;
       return (
         <HourBox
           key={j}
           hour={j}
           rawKey={dataKey}
-          event={event}
+          event={_event}
+          id={_event.id}
           onEdit={_editData => {
             this.props.editEventData(_editData);
             this.props.formModalOpen(_editData);
+            this.forceUpdate();
           }}
           onDelete={deleteData => {
             this.props.deleteEventData(deleteData);
@@ -85,7 +89,8 @@ class Calendar extends React.Component {
       activeTile,
       addEventData,
       editEventData,
-      deleteEventData
+      deleteEventData,
+      refreshEventForm
     } = this.props;
     return (
       <span>
@@ -93,7 +98,8 @@ class Calendar extends React.Component {
           <Row
             style={{
               marginTop: "34px"
-            }}>
+            }}
+          >
             <Col span={2} className="time-tick-column">
               {this.generateTimeLabelBox(timeLabel)}
             </Col>
@@ -103,6 +109,7 @@ class Calendar extends React.Component {
           ""
         )}
         <EventAddForm
+          refreshEventFor={refreshEventForm}
           isOpen={isModalOpen}
           onClose={() => {
             formModalClose();
@@ -134,6 +141,7 @@ export default connect(
     formModalOpen,
     addEventData,
     editEventData,
-    deleteEventData
+    deleteEventData,
+    refreshEventForm
   }
 )(Calendar);

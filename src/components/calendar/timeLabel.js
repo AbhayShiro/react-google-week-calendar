@@ -6,7 +6,7 @@ const TickLabelBox = SC.div`
     padding-right: 8px;
     text-align: right;
     position: relative;
-    height: 48px;
+    height: 55px;
 `;
 const Label = SC.div`
     display: block;

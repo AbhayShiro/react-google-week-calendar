@@ -3,9 +3,13 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Form, Input, Modal, Tag, TimePicker } from "antd";
 import SC from "styled-components";
+import uuid from "uuid/v4";
 
 import { getBounds } from "../../utility/domHelpers";
-import { timeFromString } from "../../utility/dateHelpers";
+import {
+  timeFromString,
+  timeObjectFromNumber
+} from "../../utility/dateHelpers";
 
 const Item = Form.Item;
 
@@ -33,7 +37,6 @@ class EventAddForm extends Component {
           value: timeFromString(to.raw)
         }
       });
-      this.forceUpdate();
     }
   }
 
@@ -51,6 +54,7 @@ class EventAddForm extends Component {
           fromOffset = getBounds(fromHours + "_hours"),
           toOffset = getBounds(toHours + "_hours");
         this.props.saveEvent({
+          id: this.props.id ? this.props.id : uuid(),
           fromOffset,
           toOffset,
           title,
@@ -64,6 +68,7 @@ class EventAddForm extends Component {
           },
           date: this.props.date
         });
+        // this.props.refreshEventForm();
         this.props.form.resetFields();
         this.props.onClose();
       }
@@ -79,7 +84,8 @@ class EventAddForm extends Component {
       from,
       date,
       title,
-      to
+      to,
+      id
     } = this.props;
     let { getFieldDecorator } = form;
     return (
@@ -87,13 +93,17 @@ class EventAddForm extends Component {
         title={null}
         style={modalStyleProps}
         visible={isOpen}
-        onOk={this.submitForm}
-        onCancel={onClose}>
+        destroyOnClose={true}
+        onOk={() => {
+          this.submitForm();
+        }}
+        onCancel={onClose}
+      >
         <Form>
           <Item>
-            {getFieldDecorator("title", {})(
-              <Input placeholder="Add title" className="event-form-input" />
-            )}
+            {getFieldDecorator("title", {
+              initialValue: id ? title : ""
+            })(<Input placeholder="Add title" className="event-form-input" />)}
           </Item>
           <Item>
             <Tag className="event-form-tag-item" color="blue">
@@ -102,7 +112,9 @@ class EventAddForm extends Component {
           </Item>
           <TimeControls>
             <Item>
-              {getFieldDecorator("from", {})(
+              {getFieldDecorator("from", {
+                initialValue: id ? from.raw : timeObjectFromNumber(from.hours)
+              })(
                 <TimePicker
                   minuteStep={30}
                   allowClear={true}
@@ -113,7 +125,9 @@ class EventAddForm extends Component {
               )}
             </Item>
             <Item>
-              {getFieldDecorator("to", {})(
+              {getFieldDecorator("to", {
+                initialValue: id ? to.raw : timeObjectFromNumber(to.hours)
+              })(
                 <TimePicker
                   minuteStep={30}
                   allowClear={true}
@@ -132,7 +146,13 @@ class EventAddForm extends Component {
 
 EventAddForm.defaultProps = {
   isOpen: false,
-  modalStyleProps: { top: 20 }
+  modalStyleProps: { top: 20 },
+  from: {
+    hours: null
+  },
+  to: {
+    hours: null
+  }
 };
 
 EventAddForm.propTypes = {

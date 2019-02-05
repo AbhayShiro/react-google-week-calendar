@@ -37,7 +37,8 @@ class HourBox extends Component {
     return event.map((e, k) => {
       let _eventData = Object.assign({}, e, {
         date: this.props.rawKey,
-        day: k
+        day: k,
+        id: e.id
       });
       return (
         <EventTag
@@ -84,12 +85,17 @@ class HourBox extends Component {
           border: "1px solid #cecece",
           borderBottom: "none",
           borderRight: "none"
-        }}>
+        }}
+      >
         <BGSpan onClick={this.openFormModal} />
         {event.length > 0 ? this.generateEventTag(event, raw) : ""}
       </Row>
     );
   }
 }
+
+HourBox.defaultProps = {
+  id: ""
+};
 
 export default HourBox;

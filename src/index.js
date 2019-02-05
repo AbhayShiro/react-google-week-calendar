@@ -20,7 +20,4 @@ const Root = () => (
   </Provider>
 );
 const rootElement = document.getElementById("root");
-document.addEventListener("DOMContentLoaded", function(event) {
-  console.log("Loaded");
-});
 ReactDOM.render(<Root store={store} />, rootElement);

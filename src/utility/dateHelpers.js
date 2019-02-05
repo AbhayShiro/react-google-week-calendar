@@ -9,3 +9,9 @@ export const timeFromString = timeString => {
   let _time = moment(timeString);
   return _time;
 };
+
+export const timeObjectFromNumber = (timeValue = null) => {
+  let _timeObject =
+    timeValue === null ? moment() : moment(timeValue.toString(), "LT");
+  return _timeObject;
+};

@@ -4,6 +4,7 @@ export const FORM_MODAL_CLOSE = "FORM_MODAL_CLOSE";
 export const ADD_EVENT_DATA = "ADD_EVENT_DATA";
 export const DELETE_EVENT_DATA = "DELETE_EVENT_DATA";
 export const EDIT_EVENT_DATA = "EDIT_EVENT_DATA";
+export const REFRESH_EVENT_FORM = "REFRESH_EVENT_FORM";
 
 export const logEventDateTime = data => {
   return {
@@ -43,5 +44,11 @@ export const editEventData = data => {
   return {
     type: EDIT_EVENT_DATA,
     payload: data
+  };
+};
+
+export const refreshEventForm = () => {
+  return {
+    type: REFRESH_EVENT_FORM
   };
 };

@@ -1,7 +1,7 @@
 import { timeLabel, weekData } from "../../components/calendar/mockData.js";
 import { FIND_WEEK_RANGE } from "../actions/calendarDataAction";
 
-import { getWeekDaysCollection } from "../../utility/domHelpers";
+import { getWeekDaysCollection, uniqBy } from "../../utility/domHelpers";
 import { getTodaysDate } from "../../utility/domHelpers";
 
 const today = getTodaysDate();
@@ -19,27 +19,27 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case "ADD_EVENT_DATA": {
-      let { date, from, to, fromOffset, toOffset, title } = action.payload,
+      let { date, from, to, fromOffset, toOffset, title, id } = action.payload,
         _week = state.weekData[date],
         _eventData = [
-          ..._week.data[from.hours],
+          ..._week.data[from.hours].filter(c => c.id !== id),
           {
             title,
             fromOffset,
             toOffset,
             from,
-            to
+            to,
+            id
           }
-        ],
-        _weekData = Object.assign({}, state.weekData, {
-          [date]: Object.assign({}, _week, {
-            data: Object.assign({}, _week.data, {
-              [from.hours]: [...new Set(_eventData)]
-            })
-          })
-        });
-      console.log("hit the road jack", date, _week);
+        ];
 
+      let _weekData = Object.assign({}, state.weekData, {
+        [date]: Object.assign({}, _week, {
+          data: Object.assign({}, _week.data, {
+            [from.hours]: _eventData
+          })
+        })
+      });
       return Object.assign({}, state, {
         weekData: _weekData,
         master: Object.assign({}, state.master, _weekData)
