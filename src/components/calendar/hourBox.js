@@ -6,6 +6,9 @@ import { Popover, Button } from "antd";
 import SC from "styled-components";
 
 import EventTag from "../eventTag";
+import notifier from "../Notifier";
+
+import { dayNameFromString } from "../../utility/dateHelpers";
 
 const BGSpan = SC.span`
   width: 100%;
@@ -30,8 +33,12 @@ class HourBox extends Component {
     this.props.openForm();
   };
 
-  generateEventTag = event => {
+  generateEventTag = (event, dateKey) => {
     return event.map((e, k) => {
+      let _eventData = Object.assign({}, e, {
+        date: this.props.rawKey,
+        day: k
+      });
       return (
         <EventTag
           label={e.title}
@@ -40,6 +47,20 @@ class HourBox extends Component {
             this.setState({
               activeTag: k
             });
+            let _taskAddedDay = dayNameFromString(e.from.raw),
+              _data = {
+                title: e.title,
+                description: `${_taskAddedDay}, from ${e.from.hours} to ${
+                  e.to.hours
+                }`,
+                deleteEvent: () => {
+                  this.props.onDelete(_eventData);
+                },
+                editEvent: () => {
+                  this.props.onEdit(_eventData);
+                }
+              };
+            notifier(_data);
           }}
           styleObj={{
             width: Math.abs(90 / event.length) + "%",
@@ -65,7 +86,7 @@ class HourBox extends Component {
           borderRight: "none"
         }}>
         <BGSpan onClick={this.openFormModal} />
-        {event.length > 0 ? this.generateEventTag(event) : ""}
+        {event.length > 0 ? this.generateEventTag(event, raw) : ""}
       </Row>
     );
   }

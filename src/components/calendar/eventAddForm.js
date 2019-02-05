@@ -5,6 +5,7 @@ import { Form, Input, Modal, Tag, TimePicker } from "antd";
 import SC from "styled-components";
 
 import { getBounds } from "../../utility/domHelpers";
+import { timeFromString } from "../../utility/dateHelpers";
 
 const Item = Form.Item;
 
@@ -16,6 +17,24 @@ class EventAddForm extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  componentDidMount() {
+    if (this.props.title) {
+      let { title, from, to } = this.props;
+      this.props.form.setFields({
+        title: {
+          value: title
+        },
+        from: {
+          value: timeFromString(from.raw)
+        },
+        to: {
+          value: timeFromString(to.raw)
+        }
+      });
+      this.forceUpdate();
+    }
   }
 
   submitForm = () => {
@@ -45,13 +64,23 @@ class EventAddForm extends Component {
           },
           date: this.props.date
         });
+        this.props.form.resetFields();
         this.props.onClose();
       }
     });
   };
 
   render() {
-    let { isOpen, onClose, modalStyleProps, form, from, date } = this.props;
+    let {
+      isOpen,
+      onClose,
+      modalStyleProps,
+      form,
+      from,
+      date,
+      title,
+      to
+    } = this.props;
     let { getFieldDecorator } = form;
     return (
       <Modal

@@ -21,19 +21,20 @@ export default function(state = initialState, action) {
     case "ADD_EVENT_DATA": {
       let { date, from, to, fromOffset, toOffset, title } = action.payload,
         _week = state.weekData[date],
+        _eventData = [
+          ..._week.data[from.hours],
+          {
+            title,
+            fromOffset,
+            toOffset,
+            from,
+            to
+          }
+        ],
         _weekData = Object.assign({}, state.weekData, {
           [date]: Object.assign({}, _week, {
             data: Object.assign({}, _week.data, {
-              [from.hours]: [
-                ..._week.data[from.hours],
-                {
-                  title,
-                  fromOffset,
-                  toOffset,
-                  from,
-                  to
-                }
-              ]
+              [from.hours]: [...new Set(_eventData)]
             })
           })
         });
