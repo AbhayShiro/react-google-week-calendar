@@ -43,8 +43,16 @@ class Calendar extends React.Component {
           hour={j}
           rawKey={dataKey}
           event={event}
+          onEdit={() => {
+            this.props.editEventData(
+              Object.assign({}, event, {
+                from: j,
+                date: dataKey
+              })
+            );
+          }}
           openForm={() => {
-            formModalOpen({
+            this.props.formModalOpen({
               from: j,
               date: dataKey
             });

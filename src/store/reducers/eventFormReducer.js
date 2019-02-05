@@ -18,6 +18,10 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case EDIT_EVENT_DATA:
+      return Object.assign({}, state, {
+        currentData: Object.assign({}, state.currentData, action.payload)
+      });
     case LOG_EVENT_DATE_TIME:
       return Object.assign({}, state, {
         from: action.payload.from,

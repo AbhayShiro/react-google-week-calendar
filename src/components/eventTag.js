@@ -5,7 +5,7 @@ import { Tag } from "antd";
 const EventTag = ({ color, label, styleObj, onClick }) => (
   <Tag
     color={color}
-    onClick
+    onClick={onClick}
     style={Object.assign(
       {},
       {
