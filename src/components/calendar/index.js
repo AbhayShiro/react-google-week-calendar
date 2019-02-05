@@ -57,6 +57,7 @@ class Calendar extends React.Component {
             this.props.formModalOpen(_editData);
             this.forceUpdate();
           }}
+          onAdd={this.saveNewEvent}
           onDelete={deleteData => {
             this.props.deleteEventData(deleteData);
           }}
@@ -82,6 +83,10 @@ class Calendar extends React.Component {
         />
       );
     });
+  };
+
+  saveNewEvent = data => {
+    this.props.addEventData(data);
   };
 
   //<EventTag label="Call Tim, 5PM" />
@@ -115,11 +120,12 @@ class Calendar extends React.Component {
           refreshEventFor={refreshEventForm}
           isOpen={isModalOpen}
           onClose={() => {
+            if (activeTile.id) {
+              this.saveNewEvent(activeTile);
+            }
             formModalClose();
           }}
-          saveEvent={data => {
-            addEventData(data);
-          }}
+          saveEvent={this.saveNewEvent}
           {...activeTile}
         />
       </span>

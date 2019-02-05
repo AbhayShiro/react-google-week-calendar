@@ -25,6 +25,9 @@ body {
 .time-tick-column:first-child {
   margin-top: 86px;
 }
+.ant-notification-close-icon {
+  display: none !important;
+}
 .event-form-tag-item {
   width: 50px;
   height: 35px;
@@ -47,6 +50,6 @@ body {
 }
 .event-notif-control-button {
 }
-.ant-select-selection{
+.ant-select-selection {
   border: none !important;
 }

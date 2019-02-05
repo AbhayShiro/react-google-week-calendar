@@ -63,7 +63,11 @@ class HourBox extends Component {
                   this.props.onDelete(_eventData);
                 },
                 editEvent: () => {
+                  this.props.onDelete(_eventData);
                   this.props.onEdit(_eventData);
+                },
+                onRevert: () => {
+                  this.props.onAdd(_eventData);
                 }
               };
             notifier(_data);
