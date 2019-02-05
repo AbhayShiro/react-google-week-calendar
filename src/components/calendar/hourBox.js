@@ -7,7 +7,11 @@ import SC from "styled-components";
 import EventTag from "../eventTag";
 import notifier from "../notifier";
 
-import { dayNameFromString } from "../../utility/dateHelpers";
+import {
+  dayNameFromString,
+  convertTo12,
+  dayOrNight
+} from "../../utility/dateHelpers";
 
 const BGSpan = SC.span`
   width: 100%;
@@ -50,9 +54,11 @@ class HourBox extends Component {
             let _taskAddedDay = dayNameFromString(e.from.raw),
               _data = {
                 title: e.title,
-                description: `${_taskAddedDay}, from ${e.from.hours} to ${
+                description: `${_taskAddedDay}, from ${convertTo12(
+                  e.from.hours
+                )} ${dayOrNight(e.to.raw)} to ${convertTo12(
                   e.to.hours
-                }`,
+                )} ${dayOrNight(e.to.raw)}`,
                 deleteEvent: () => {
                   this.props.onDelete(_eventData);
                 },

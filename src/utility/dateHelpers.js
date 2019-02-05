@@ -15,3 +15,16 @@ export const timeObjectFromNumber = (timeValue = null) => {
     timeValue === null ? moment() : moment(timeValue.toString(), "LT");
   return _timeObject;
 };
+
+export const convertTo12 = hh => {
+  let _hFormat = Math.abs(12 - hh);
+  if (hh < 12) {
+    return hh;
+  }
+  return _hFormat === 0 ? 12 : _hFormat;
+};
+
+export const dayOrNight = dateString => {
+  let _date = moment(dateString, "YYYY-MM-DD HH:mm:ss");
+  return _date.format("A");
+};
