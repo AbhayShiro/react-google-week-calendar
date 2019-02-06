@@ -121,7 +121,7 @@ class Calendar extends React.Component {
           isOpen={isModalOpen}
           onClose={() => {
             if (activeTile.id) {
-              this.saveNewEvent(activeTile);
+              //this.saveNewEvent(activeTile);
             }
             formModalClose();
           }}

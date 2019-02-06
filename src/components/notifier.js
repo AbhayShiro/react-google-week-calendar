@@ -8,13 +8,7 @@ const ButtonContainer = SC.div`
   color: #fff;
 `;
 
-const openNotification = ({
-  title,
-  description,
-  editEvent,
-  deleteEvent,
-  onRevert
-}) => {
+const openNotification = ({ title, description, editEvent, deleteEvent }) => {
   const key = `open${Date.now()}`;
   const btn = (
     <ButtonContainer>

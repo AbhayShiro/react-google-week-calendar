@@ -41,7 +41,9 @@ export default function(state = initialState, action) {
       });
     case FORM_MODAL_CLOSE:
       return Object.assign({}, state, {
-        isModalOpen: false
+        isModalOpen: false,
+        currentData: null,
+        activeTile: null
       });
     default:
       return state;

@@ -23,22 +23,7 @@ class EventAddForm extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    if (this.props.title) {
-      let { title, from, to } = this.props;
-      this.props.form.setFields({
-        title: {
-          value: title
-        },
-        from: {
-          value: timeFromString(from.raw)
-        },
-        to: {
-          value: timeFromString(to.raw)
-        }
-      });
-    }
-  }
+  componentDidMount() {}
 
   submitForm = () => {
     this.props.form.validateFields((err, values) => {
