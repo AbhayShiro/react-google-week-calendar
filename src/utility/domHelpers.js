@@ -29,8 +29,9 @@ export const findBulkLabelOffset = timeLabel => {
 
 export const getWeekDaysCollection = startDate => {
   let startOfWeek = moment(startDate, "DD-MM-YYY")
-    .startOf("isoWeek")
-    .isoWeekday(0);
+      .startOf("isoWeek")
+      .isoWeekday(0),
+    weekNumber = moment(startDate, "DD-MM-YYY").week();
   let endOfWeek = moment(startDate, "DD-MM-YYY").endOf("week");
   let days = [];
   let weekDataObject = {};
@@ -50,7 +51,8 @@ export const getWeekDaysCollection = startDate => {
   }
   return {
     weekData: weekDataObject,
-    days: days
+    days: days,
+    weekNumber: weekNumber
   };
 };
 
@@ -70,4 +72,8 @@ export const uniqBy = (arr, predicate) => {
       }, new Map())
       .values()
   ];
+};
+
+export const has = (object, key) => {
+  return object ? hasOwnProperty.call(object, key) : false;
 };

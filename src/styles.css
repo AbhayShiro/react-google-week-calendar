@@ -25,7 +25,8 @@ body {
 .time-tick-column:first-child {
   margin-top: 86px;
 }
-.ant-notification-close-icon {
+.ant-notification-close-icon,
+.ant-layout-sider-zero-width-trigger {
   display: none !important;
 }
 .event-form-tag-item {

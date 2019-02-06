@@ -2,7 +2,7 @@ import { timeLabel, weekData } from "../../components/calendar/mockData.js";
 import { FIND_WEEK_RANGE } from "../actions/calendarDataAction";
 import { ADD_EVENT_DATA, DELETE_EVENT_DATA } from "../actions/eventFormAction";
 import { getWeekDaysCollection, uniqBy } from "../../utility/domHelpers";
-import { getTodaysDate } from "../../utility/domHelpers";
+import { getTodaysDate, has } from "../../utility/domHelpers";
 
 const today = getTodaysDate();
 const initWeekData = getWeekDaysCollection(today);
@@ -12,8 +12,14 @@ const initialState = {
   weekData: initWeekData.weekData,
   startOfWeek: null,
   endOfWeek: null,
-  master: Object.assign({}, initWeekData.weekData),
-  days: initWeekData.days
+  master: Object.assign(
+    {},
+    {
+      [initWeekData.weekNumber]: initWeekData.weekData
+    }
+  ),
+  days: initWeekData.days,
+  weekNumber: initWeekData.weekNumber
 };
 
 export default function(state = initialState, action) {
@@ -42,7 +48,9 @@ export default function(state = initialState, action) {
       });
       return Object.assign({}, state, {
         weekData: _weekData,
-        master: Object.assign({}, state.master, _weekData)
+        master: Object.assign({}, state.master, {
+          [state.weekNumber]: _weekData
+        })
       });
     }
     case DELETE_EVENT_DATA: {
@@ -58,15 +66,24 @@ export default function(state = initialState, action) {
       });
       return Object.assign({}, state, {
         weekData: _weekData,
-        master: Object.assign({}, state.master, _weekData)
+        master: Object.assign({}, state.master, {
+          [state.weekNumber]: _weekData
+        })
       });
     }
-    case FIND_WEEK_RANGE:
+    case FIND_WEEK_RANGE: {
+      let weekData = has(state.master, action.payload.weekNumber)
+        ? state.master[action.payload.weekNumber]
+        : action.payload.weekData;
       return Object.assign({}, state, {
         days: action.payload.days,
-        weekData: action.payload.weekData,
-        master: Object.assign({}, state.master, action.payload.weekData)
+        weekData: weekData,
+        master: Object.assign({}, state.master, {
+          [action.payload.weekNumber]: weekData
+        }),
+        weekNumber: action.payload.weekNumber
       });
+    }
     default:
       return state;
   }
