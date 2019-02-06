@@ -4,12 +4,11 @@ import PropTypes from "prop-types";
 import { Layout } from "antd";
 
 //Custom component imports
-import BoxCalendar from "../components/boxCalendar";
 import LogoContainer from "../components/logo";
-import CreateButton from "../components/createButton";
+import Sidebar from "../components/sidebar";
 import Calendar from "../components/calendar";
 
-const { Content, Sider } = Layout;
+const { Content } = Layout;
 
 class MainLayout extends Component {
   constructor(props) {
@@ -19,33 +18,15 @@ class MainLayout extends Component {
   render() {
     let { timeLabel, weekData } = this.props;
     return (
-      <Layout className="core-layout">
-        <Sider
-          collapsible={false}
-          breakpoint="lg"
-          collapsedWidth="0"
-          className="calendar-sider"
-          style={{
-            background: "#fff",
-            width: "270px"
-          }}
-        >
-          <LogoContainer>Calendar</LogoContainer>
-          <CreateButton
-            onClick={() => {
-              console.debug("on click calendar ebvetn added");
-            }}
-          />
-          <BoxCalendar />
-        </Sider>
-        <Layout
-          style={{
-            background: "white"
-          }}
-        >
-          <Content style={{ margin: "24px 16px 0" }}>
-            <Calendar timeLabel={timeLabel} weekData={weekData} />
-          </Content>
+      <Layout className="white-bg vh-100">
+        <LogoContainer>Calendar</LogoContainer>
+        <Layout className="core-layout">
+          <Sidebar />
+          <Layout className="white-bg">
+            <Content style={{ margin: "24px 16px 0" }}>
+              <Calendar timeLabel={timeLabel} weekData={weekData} />
+            </Content>
+          </Layout>
         </Layout>
       </Layout>
     );

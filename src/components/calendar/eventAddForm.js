@@ -60,6 +60,27 @@ class EventAddForm extends Component {
     });
   };
 
+  revertEdit = () => {
+    if (this.props.id) {
+      this.props.saveEvent({
+        id: this.props.id,
+        fromOffset: this.props.fromOffset,
+        toOffset: this.props.toOffset,
+        title: this.props.title,
+        from: {
+          hours: this.props.from.hours,
+          raw: this.props.from.raw
+        },
+        to: {
+          hours: this.props.to.Hours,
+          raw: this.props.to.raw
+        },
+        date: this.props.date
+      });
+    }
+    this.props.onClose();
+  };
+
   render() {
     let {
       isOpen,
@@ -82,7 +103,7 @@ class EventAddForm extends Component {
         onOk={() => {
           this.submitForm();
         }}
-        onCancel={onClose}
+        onCancel={this.revertEdit}
       >
         <Form>
           <Item>
